@@ -15,6 +15,8 @@ public class DisplayUtils {
             return "";
         }
 
+        // Temporary placeholder until Piece subclasses
+        // implement toString() or getSymbol()
         return piece.toString();
     }
 }

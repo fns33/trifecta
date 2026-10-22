@@ -12,7 +12,8 @@ public class BoardPrinter {
 
     public static void print(Board board) {
 
-        System.out.println(" A B C D E F G H");
+        System.out.println("  A  B  C  D  E  F  G  H");
+        System.out.println()
 
         for (int row = 7; row >=0; row --) {
             
@@ -20,7 +21,9 @@ public class BoardPrinter {
 
             for (int col = 0; col < 8; col++) {
 
-                Piece piece = board.getPiece(row, col);
+                Piece piece = board.getPiece(
+                    new Position (row, col)
+                );
 
                 if (piece != null) {
                     System.out.print(
@@ -33,7 +36,7 @@ public class BoardPrinter {
                     if ((row + col) % 2 ==0) {
                         System.out.print("## ");
                     } else {
-                        System.out.print("    ");
+                        System.out.print("   ");
                     }
                 }
             }
