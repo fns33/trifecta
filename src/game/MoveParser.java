@@ -1,6 +1,6 @@
 /* 
-M2 - T1
-Created by Member 2: jcb315
+* M2 - T1
+* Created by Member 2: jcb315
 */
 
 package game;
@@ -8,6 +8,14 @@ package game;
 import board.Position;
 
 public class MoveParser {
+
+/*
+* Converts a chess square into a position object
+*
+* @param square chess coordinate
+* @return Position corresponding to the sqaure
+* @throws IllegalArgumentException if teh square is invalid
+*/    
 
     public static Position parsePosition(String square) {
 
@@ -27,6 +35,13 @@ public class MoveParser {
 
         return new Position(row, col); // x,y coordinates
     }
+
+/*
+* Validates a chess square location
+*
+* @param square chess coordinate
+* @return true if valid, false otherwise
+*/
 
 public static boolean isValidSquare(String square) {
 
@@ -55,7 +70,7 @@ public static Position[] parseMove(String input) {
 
     if (parts.length !=2) {
         throw new IllegalArgumentException(
-            "Invalid format. Use [FROM] [TO]"
+            "Invalid format. Use [FROM] [TO] (Example: E2 E4)"
         );
     }
 

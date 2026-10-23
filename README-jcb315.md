@@ -22,7 +22,7 @@
 #
 # Current Status:
 # Milestone 1: In Progress
-# Milestone 2: Not Started
+# Milestone 2: In Progress
 # Milestone 3: Not Started
 # Milestone 4: Not Started 
 #
