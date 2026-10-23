@@ -39,7 +39,7 @@ public int getCol() { return col;}
 
 public String toChessNotation() {
     char file = (char) ('A' + col); 
-    int rank = row + 1; 
+    int rank = 8 - row; 
 
     return "" + file + rank;
 }
