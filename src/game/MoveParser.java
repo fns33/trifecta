@@ -15,6 +15,12 @@ public class MoveParser {
 * @param square chess coordinate
 * @return Position corresponding to the sqaure
 * @throws IllegalArgumentException if teh square is invalid
+
+* Parses a move in the format:
+* [FROM] [TO]
+*
+* @param input move entered by user
+* @return array containing ource and destination positions
 */    
 
     public static Position parsePosition(String square) {

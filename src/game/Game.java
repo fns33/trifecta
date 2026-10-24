@@ -12,6 +12,14 @@ import java.util.Scanner;
 import board.Position;
 import pieces.Color;
 
+/*
+* Parses a move in the format:
+* [FROM] [TO]
+*
+* @param input move entered by user
+* @return array containing ource and destination positions
+*/
+
 public class Game {
 
     private Color currentTurn;
@@ -50,6 +58,15 @@ public class Game {
             System.out.print(currentTurn + " 's turn.' Enter move: ");
 
             String input = scanner.nextLine();
+
+            if (input.equalsIgnoreCase("quit")) {
+
+                System.out.println(
+                    "Thanks for playing!"
+                ):
+                
+                break;
+            }
 
             try {
 

@@ -7,6 +7,13 @@ package utils;
 
 import pieces.Piece;
 
+/*
+* Return the display symbol for a chess piece
+*
+* @param piece chess piece
+* @return piece display symbol
+*/
+
 public class DisplayUtils {
 
     public static String getPieceSymbol(Piece piece) {
@@ -15,8 +22,6 @@ public class DisplayUtils {
             return "";
         }
 
-        // Temporary placeholder until Piece subclasses
-        // implement toString() or getSymbol()
-        return piece.toString();
+        return piece.getSymbol()
     }
 }
