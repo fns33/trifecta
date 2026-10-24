@@ -22,8 +22,8 @@ public class Board {
     // Populates the 8x8 matrix with pieces in standard chess starting positions
     public void initializeBoard() {
         // Clear all board squares
-        for (int r = 0; r &lt; 8; r++) {
-            for (int c = 0; c &lt; 8; c++) {
+        for (int r = 0; r < 8; r++) {
+            for (int c = 0; c < 8; c++) {
                 grid[r][c] = null; 
             }
         }
@@ -38,12 +38,12 @@ public class Board {
         grid[0][7] = new Rook(Color.BLACK, new Position(0, 7));
         
         // Row 1 (Rank 7): Black Pawns
-        for (int c = 0; c &lt; 8; c++) {
+        for (int c = 0; c < 8; c++) {
             grid[1][c] = new Pawn(Color.BLACK, new Position(1, c));
         } 
 
         // Row 6 (Rank 2): White Pawns
-        for (int c = 0; c &lt; 8; c++) {
+        for (int c = 0; c < 8; c++) {
             grid[6][c] = new Pawn(Color.WHITE, new Position(6, c));
         } 
         
@@ -76,13 +76,13 @@ public class Board {
     
     // Renders the board state to the console with file labels (A-H), rank numbers (1-8), and dark squares (##)
     public void display() {
-        System.out.println(" A B C D E F G H");
+        System.out.println("   A B C D E F G H");
 
-        for (int r = 0; r &lt; 8; r++) {
+        for (int r = 0; r < 8; r++) {
             int rankNumber = 8 - r; // Maps array row 0 to Rank 8 and row 7 to Rank 1
             System.out.print(rankNumber + " ");
             
-            for (int c = 0; c &lt; 8; c++) {
+            for (int c = 0; c < 8; c++) {
                 Piece piece = grid[r][c];
                 if (piece != null) {
                     System.out.print(piece.getSymbol() + " ");
@@ -91,7 +91,7 @@ public class Board {
                     if ((r + c) % 2 != 0) {
                         System.out.print("## ");
                     } else {
-                        System.out.print(" ");
+                        System.out.print("   ");
                     }
                 }
             }
