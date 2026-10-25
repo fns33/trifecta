@@ -7,6 +7,7 @@ package utils;
 
 import board.Board;
 import pieces.Piece;
+import board.Position;
 
 public class BoardPrinter {
 
@@ -21,8 +22,9 @@ public class BoardPrinter {
 
             for (int col = 0; col < 8; col++) {
 
-                Piece piece = board.getPiece(
-                    new Position (row, col)
+                Position pos = new Position(row, col);
+                Piece piece = board.getPiece(pos);
+
                 );
 
                 if (piece != null) {
