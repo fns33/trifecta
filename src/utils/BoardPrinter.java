@@ -6,8 +6,8 @@ Created by Member 2: jcb315
 package utils;
 
 import board.Board;
-import pieces.Piece;
 import board.Position;
+import pieces.Piece;
 
 public class BoardPrinter {
 
