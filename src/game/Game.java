@@ -1,7 +1,9 @@
 /*
 M2 - T1 Continued
 M2 - T2
-m2 - T3
+M2 - T3
+M2 - T4
+M2 - T5
 Created by Member 2: jcb315
 */
 
@@ -9,6 +11,7 @@ package game;
 
 import java.util.Scanner;
 
+import board.Board;
 import board.Position;
 import pieces.Color;
 

@@ -1,10 +1,7 @@
 /*
-* Move Parser Test
-* M1 - Test 1
-* M1 - Test 4
+* Main
+* CReated by Member 2: jcb315
 */
-
-package testing;
 
 import board.Board;
 import board.Position;
@@ -16,26 +13,32 @@ public class Main {
 
         Board board = new Board();
 
-        //M1-Test1
+        // M1 - Test1
         board.display();
 
-        // M1-Test4
+        // M1 - Test 4
         Position pos = new Position(0, 0);
 
-        System.out.Println(
+        Piece piece = board.getPiece(pos);
+
+        System.out.println(
             "\nPiece at " +
-            pos.toChessNotation() +
             ": " +
             piece.getSymbol()
         );
 
-        //Empty square
+        //Test an empty square
         Position emptyPos =
             new Position(3, 3);
-
+            
         Piece emptyPiece = 
             board.getPiece(emptyPos);
 
-        System.out.println(emptyPiece);  
+        System.out.println(
+            "Piece at " +
+            emptyPos.toChessNotation() +
+            ": " +
+            emptyPiece
+        );
     }
 }

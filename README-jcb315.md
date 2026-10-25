@@ -26,8 +26,8 @@
 # Milestone 3: In Progress
 # Milestone 4: In Progress
 #
-# Wating on: board.Java
-# Ready when board.Java exists: M1-T4, M1-Test1, M1-Test4, M2: T4-T6, and M3.
+# board.Java merge successful
+# Waiting for more pieces :M1-Test1, M1-Test4, M2: T4-T6, and M3.
 # Run:
 # Complie:
 # javac *.java
