@@ -76,7 +76,7 @@ public class Board {
     
     // Renders the board state to the console with file labels (A-H), rank numbers (1-8), and dark squares (##)
     public void display() {
-        System.out.println("   A B C D E F G H");
+        System.out.println("   A  B  C  D  E  F  G  H");
 
         for (int r = 0; r < 8; r++) {
             int rankNumber = 8 - r; // Maps array row 0 to Rank 8 and row 7 to Rank 1
