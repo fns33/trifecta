@@ -22,11 +22,7 @@ public abstract class Piece {
 
     public Color getColor(){return this.color;}
     public Position getCurrentPosition(){return this.currentPosition;}
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> origin/dev
     public abstract String getSymbol();
     public abstract List<Position> possibleMoves(Board board);
 
