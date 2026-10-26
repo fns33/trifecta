@@ -24,6 +24,6 @@ public class DisplayUtils {
             return "";
         }
 
-        return piece.getSymbol()
+        return piece.getSymbol();
     }
 }
