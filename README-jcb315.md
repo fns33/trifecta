@@ -21,9 +21,9 @@
 # Turn Management
 #
 # Current Status:
-# Milestone 1: In Progress
-# Milestone 2: In Progress
-# Milestone 3: In Progress
+# Milestone 1: Completed
+# Milestone 2: Completed
+# Milestone 3: Completed
 # Milestone 4: In Progress
 #
 # board.Java merge successful

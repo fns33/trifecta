@@ -1,6 +1,10 @@
 /*
 * M3 - Knight
 * Created by Member 2 - jcb315
+* Knight Chess Piece
+* L-shaped moves: 
+* 2 squares in one direction and 1 square perpendicular
+* Jumping capability over another piece
  */
 
 package pieces;
@@ -14,6 +18,11 @@ import java.util.List;
 
 public class Knight extends Piece {
     
+    /*
+    * Returns the display symbol for night
+    * @return "wN" for white knight or "bN" for black knight
+    */
+
     public Knight(Color color, Position position) {
         super(color, position);
     }
@@ -25,6 +34,14 @@ public class Knight extends Piece {
             : "bN";
     }
 
+    /*
+    * Calculate Knight moves fro current position
+    * Jumping capabilities 
+    * Cannot move onto occupied square of same color
+    * @param board the current board state
+    * @return a list of valid destination positions
+    */
+   
     @Override 
     public List<Position> possibleMoves(Board board) {
 

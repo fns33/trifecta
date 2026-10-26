@@ -1,6 +1,9 @@
 /*
 * M3 - Pawn
 * Created by Member 2 - jcb315
+* Pawn Chess Piece
+* Diagonal moves:
+* 2 sqaures forward
  */
 
 package pieces;
@@ -13,9 +16,20 @@ import java.util.List;
 
 public class Pawn extends Piece {
 
+    /* 
+    * Pawn choice by color and position
+    * @param color the piece color
+    * @param position the starting position
+     */
+
     public Pawn(Color color, Position position) {
         super(color, position);
     }
+
+    /*
+    * Return symbol for Pawn
+    * @return "wp" for white pawn or "bp" for black pawn
+    */
 
     @Override
     public String getSymbol() {
@@ -24,6 +38,15 @@ public class Pawn extends Piece {
             : "bp";
         }
 
+    /*
+    * Calculates Pawn moves from current position
+    * - One-squre move
+    * - two-sqaure opening moves
+    * - Diagnal capture
+    * @param board the current board state
+    * @return a list of valid destination positions
+    */ 
+   
     @Override 
     public List<Position> possibleMoves(Board board) {
 

@@ -1,6 +1,8 @@
 /*
-M1 - T5
-Created by Member 2: jcb315
+* M1 - T5
+* Created by Member 2: jcb315
+* Utility methods for chess pieces
+* Converts Piece objects into displayed text symbols
  */
 
 package utils;

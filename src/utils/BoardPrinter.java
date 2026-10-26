@@ -1,6 +1,8 @@
 /*
-M1 - T4
-Created by Member 2: jcb315
+* M1 - T4
+* Created by Member 2: jcb315
+* Current board state
+* Displays labels, chess pieces and empty squares
 */
 
 package utils;
@@ -11,6 +13,16 @@ import pieces.Piece;
 
 public class BoardPrinter {
 
+    /*
+    * Print the board to the console
+    * Displays:
+    * - File Labels (A-H)
+    * - Rank Labels (1-8)
+    * - Piece Symbols
+    * - Empty Squres
+    * @ param board to board display
+    */
+   
     public static void print(Board board) {
 
         System.out.println("  A  B  C  D  E  F  G  H");
