@@ -20,13 +20,13 @@ public class BoardPrinter {
     * - Rank Labels (1-8)
     * - Piece Symbols
     * - Empty Squres
-    * @ param board to board display
+    * @ param board to board to display
     */
-   
+
     public static void print(Board board) {
 
         System.out.println("  A  B  C  D  E  F  G  H");
-        System.out.println()
+        System.out.println();
 
         for (int row = 7; row >=0; row --) {
             
@@ -36,8 +36,6 @@ public class BoardPrinter {
 
                 Position pos = new Position(row, col);
                 Piece piece = board.getPiece(pos);
-
-                );
 
                 if (piece != null) {
                     System.out.print(
