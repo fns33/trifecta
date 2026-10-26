@@ -23,37 +23,29 @@ public class BoardPrinter {
     * @ param board to board to display
     */
 
-    public static void print(Board board) {
+        public static void printBoard(Board board) {
+        System.out.println("   A  B  C  D  E  F  G  H");
 
-        System.out.println("  A  B  C  D  E  F  G  H");
-        System.out.println();
+        for (int r = 0; r < 8; r++) {
+            int rankNumber = 8 - r; // Maps array row 0 to Rank 8 and row 7 to Rank 1
 
-        for (int row = 7; row >=0; row --) {
+            System.out.print(rankNumber + " ");
             
-            System.out.print((row + 1) + " ") ;
-
-            for (int col = 0; col < 8; col++) {
-
-                Position pos = new Position(row, col);
-                Piece piece = board.getPiece(pos);
-
+            for (int c = 0; c < 8; c++) {
+                Piece piece = board.getPiece(new Position(r, c));
                 if (piece != null) {
-                    System.out.print(
-                        DisplayUtils.getPieceSymbol(piece) + " "
-                    );
-
-                }
-
-                else {
-                    if ((row + col) % 2 ==0) {
+                    System.out.print(piece.getSymbol() + " ");
+                } else {
+                    // Alternates dark square (##) and light square (space) pattern
+                    if ((r + c) % 2 != 0) {
                         System.out.print("## ");
                     } else {
                         System.out.print("   ");
                     }
                 }
             }
-
             System.out.println();
         }
     }
+
 }
