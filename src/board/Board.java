@@ -7,6 +7,7 @@ import pieces.Knight;
 import pieces.Bishop;
 import pieces.Queen;
 import pieces.King;
+import utils.BoardPrinter;
 
 // This class represents the 8x8 chessboard matrix and handles board setup and CLI display rendering.
 
@@ -74,28 +75,10 @@ public class Board {
         }
     }
     
-    // Renders the board state to the console with file labels (A-H), rank numbers (1-8), and dark squares (##)
-    public void display() {
-        System.out.println("   A B C D E F G H");
 
-        for (int r = 0; r < 8; r++) {
-            int rankNumber = 8 - r; // Maps array row 0 to Rank 8 and row 7 to Rank 1
-            System.out.print(rankNumber + " ");
-            
-            for (int c = 0; c < 8; c++) {
-                Piece piece = grid[r][c];
-                if (piece != null) {
-                    System.out.print(piece.getSymbol() + " ");
-                } else {
-                    // Alternates dark square (##) and light square (space) pattern
-                    if ((r + c) % 2 != 0) {
-                        System.out.print("## ");
-                    } else {
-                        System.out.print("   ");
-                    }
-                }
-            }
-            System.out.println();
-        }
+    // Renders the board state to the console by delegating to DisplayUtils
+    public void display() {
+      BoardPrinter.printBoard(this);
+
     }
 }
