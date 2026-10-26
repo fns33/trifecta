@@ -41,7 +41,7 @@ public class Knight extends Piece {
 
         int [] [] offsets = {
             {-2, -1},
-            {-2, -1},
+            {-2,  1},
             {-1, -2},
             {-1,  2},
             { 1, -2},

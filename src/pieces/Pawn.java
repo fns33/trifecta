@@ -27,7 +27,7 @@ public class Pawn extends Piece {
     @Override 
     public List<Position> possibleMoves(Board board) {
 
-        List<Position> move = new ArrayList<>();
+        List<Position> moves = new ArrayList<>();
 
         Position current = getCurrentPosition();
 
