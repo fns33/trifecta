@@ -33,7 +33,7 @@ public class Move {
     * return the starting poition
     */
 
-    public position getFrom() {
+    public Position getFrom() {
         return from;
     }
 
@@ -41,7 +41,7 @@ public class Move {
     * Return destination
     * @return destination
     */
-   
+
     public Position getTo() {
         return to;
     }
