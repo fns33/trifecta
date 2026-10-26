@@ -67,3 +67,20 @@ Learned implementation technique for individual pience direction control and beg
  -->
 
 //----------------------------------
+
+<!-- 
+# Entry 4 — Integration of Member 2's Utils Package & Git Workflow
+
+**Date:** October 25, 2026 
+
+**Member:** fns33 (Repo Owner)  
+
+**Task:** Refactor `Board.java` to delegate CLI rendering to Member 2's `BoardPrinter.java` (Task M1-T4) and `DisplayUtils.java` (Task M1-T5), resolve compiler errors, and standardize the AI log directory structure under `docs/AI-usage/`.
+
+### AI Prompt Assistance Requested assistance refactoring `Board.java`'s `display()` method to delegate to `BoardPrinter.print(this)` and `DisplayUtils.getPieceSymbol(piece)`, diagnosing `javac` compilation errors (`Move.java` type capitalization, stray text in `BoardPrinter.java`), and restructuring `docs/AI-usage/`.
+
+### Modifications Made - Refactored `src/board/Board.java` to delegate board rendering to `BoardPrinter.print(this);`. - Resolved `javac` compiler errors across `Move.java` and `BoardPrinter.java`. - Staged `Board.java`, `Main.java`, and `.gitkeep` deletions. - Relocated \`fns33.md\` from \`docs/ai-usage/` to `docs/AI-usage/` via `git mv`. 
+
+### Outcome / Feedback Gained a better understanding of decoupling rendering logic from board state management in Java OOP architecture, while maintaining clean Git commit histories. -->
+
+//----------------------------------
