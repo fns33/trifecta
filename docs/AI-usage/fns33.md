@@ -50,3 +50,37 @@ Successfully implemented the core `Board` class aligned with Member 1's class an
 **Testing status:** awaiting pr updates for pieces.java to complete matrix setup and CLI display rendering through local compilation and execution in VS Code.  -->
 
 //----------------------------------
+
+<!-- 
+# Entry 3 — King and Queen Piece Movement Logic 
+
+**Date:** October 24, 2026 
+
+**Member:** fns33 (Repo Owner)  **Task:** Implement Milestone 3 concrete piece movement logic for `King` and `Queen` subclasses and update abstract `Piece` class. 
+
+### AI Prompt Assistance Requested Requested prepare implementations for `King.java` and `Queen.java` with Javadoc documentation, two-character CLI symbols (`wK`, `bK`, `wQ`, `bQ`), and `possibleMoves(Board board)` implementations including board boundary validation (0–7) and collision rules. 
+
+### Modifications Made - Created `src/pieces/King.java` implementing 8-direction single-step movement array. - Created `src/pieces/Queen.java` implementing 8-direction raycasting for sliding horizontal, vertical, and diagonal moves. 
+
+### Outcome / Feedback
+Learned implementation technique for individual pience direction control and began familiarizing more with javdoc comments as implemented. 
+ -->
+
+//----------------------------------
+
+<!-- 
+# Entry 4 — Integration of Member 2's Utils Package & Git Workflow
+
+**Date:** October 25, 2026 
+
+**Member:** fns33 (Repo Owner)  
+
+**Task:** Refactor `Board.java` to delegate CLI rendering to Member 2's `BoardPrinter.java` (Task M1-T4) and `DisplayUtils.java` (Task M1-T5), resolve compiler errors, and standardize the AI log directory structure under `docs/AI-usage/`.
+
+### AI Prompt Assistance Requested assistance refactoring `Board.java`'s `display()` method to delegate to `BoardPrinter.print(this)` and `DisplayUtils.getPieceSymbol(piece)`, diagnosing `javac` compilation errors (`Move.java` type capitalization, stray text in `BoardPrinter.java`), and restructuring `docs/AI-usage/`.
+
+### Modifications Made - Refactored `src/board/Board.java` to delegate board rendering to `BoardPrinter.print(this);`. - Resolved `javac` compiler errors across `Move.java` and `BoardPrinter.java`. - Staged `Board.java`, `Main.java`, and `.gitkeep` deletions. - Relocated \`fns33.md\` from \`docs/ai-usage/` to `docs/AI-usage/` via `git mv`. 
+
+### Outcome / Feedback Gained a better understanding of decoupling rendering logic from board state management in Java OOP architecture, while maintaining clean Git commit histories. -->
+
+//----------------------------------
