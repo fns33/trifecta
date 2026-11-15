@@ -1,7 +1,12 @@
 
 package board;
 
-public class Position {
+import java.io.Serializable;
+
+public class Position implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     private int row;              //x-axis of the position 
     private int col;              //y-axis of the position
 

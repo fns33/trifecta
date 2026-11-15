@@ -84,3 +84,40 @@ Learned implementation technique for individual pience direction control and beg
 ### Outcome / Feedback Gained a better understanding of decoupling rendering logic from board state management in Java OOP architecture, while maintaining clean Git commit histories. -->
 
 //----------------------------------
+
+//----------------------------------
+
+<!--
+# Entry 5 — GameState & GameStorage GUI Integration
+
+**Date:** November 15, 2026
+
+**Member:** fns33 (Repo Owner)
+
+**Task:** Integrate the backend `GameState` and `GameStorage` classes with the existing Java Swing GUI, incorporate Member 2's `GameHistoryPanel` and `GameMenuBar`, test GUI functionality, and commit/push changes to `feature/fns33`.
+
+### AI Prompt
+
+Requested assistance integrating `GameState` with `ChessFrame.java`, connecting `GameStorage` serialization functionality to GUI menu actions, and incorporating the teammate-created `GameHistoryPanel` and `GameMenuBar` without modifying their implementations. Also requested troubleshooting of GUI rendering issues involving Unicode chess symbols after resetting the game.
+
+### Modifications Made
+
+- Updated `src/gui/ChessFrame.java` to maintain a `GameState` instance and coordinate GUI interactions with the backend.
+- Integrated `GameMenuBar` and `GameHistoryPanel` into the main application window.
+- Connected New Game functionality to `GameState.resetGame()`.
+- Connected Save Game and Load Game menu actions to `GameStorage.saveGame()` and `GameStorage.loadGame()`.
+- Connected the Undo button to `GameState.undoLastMove()`.
+- Implemented `refreshGameDisplay()` to synchronize the displayed board with the current `GameState`.
+- Integrated winner notification dialogs using `GameState.isGameOver()` and `GameState.getWinner()`.
+- Updated `src/gui/SquareView.java` to adjust white and black piece text colors while preserving the existing Unicode symbol rendering and font configuration.
+- Added serialization support to `src/board/Board.java`, `src/board/Position.java`, and `src/pieces/Piece.java` to support GameStorage functionality.
+- Preserved the existing implementations of Member 2's `GameHistoryPanel.java` and `GameMenuBar.java`.
+- Compiled the project through VS Code PowerShell using `javac` and launched the application with `java -cp bin gui.ChessFrame`.
+- Tested New Game, Save Game, Load Game, Undo with an empty history, and Exit.
+
+### Outcome / Feedback
+
+Successfully connected the existing Swing GUI to the backend game state and storage functionality. Verified that the application compiles, launches, resets, saves, loads, and exits correctly. Gained a better understanding of coordinating GUI components with a centralized game state, Java object serialization, and collaborative Git workflows. 
+-->
+
+//----------------------------------
