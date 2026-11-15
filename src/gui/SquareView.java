@@ -58,18 +58,39 @@ public class SquareView extends JButton {
      *
      * @param symbol text representation (e.g. "wK", "bp", or empty string)
      */
+    /**
+ * Updates the symbol and text color displayed on this square.
+ */
     public void setPieceSymbol(String symbol) {
+        if (symbol == null || symbol.isEmpty()) {
+            setText("");
+            return;
+        }
 
-        setText(symbol != null ? symbol : "");
+        // Map piece codes to Unicode chess symbols
+        String displaySymbol = switch (symbol) {
+            case "wK" -> "♔";
+            case "bK" -> "♚";
+            case "wQ" -> "♕";
+            case "bQ" -> "♛";
+            case "wR" -> "♖";
+            case "bR" -> "♜";
+            case "wB" -> "♗";
+            case "bB" -> "♝";
+            case "wN" -> "♘";
+            case "bN" -> "♞";
+            case "wp" -> "♙";
+            case "bp" -> "♟";
+            default -> symbol;
+        };
 
-        // White pieces render dark blue/black text;
-        // Black pieces render dark red/gray text.
-        if (symbol != null && symbol.startsWith("w")) {
-            setForeground(new Color(20, 20, 90));
+        setText(displaySymbol);
 
-        } else if (symbol != null && symbol.startsWith("b")) {
-            setForeground(new Color(130, 0, 0));
-
+        // Set text color based on piece color
+        if (symbol.startsWith("w")) {
+            setForeground(new Color(20, 20, 90)); // Navy blue
+        } else if (symbol.startsWith("b")) {
+            setForeground(new Color(130, 0, 0)); // Dark red
         } else {
             setForeground(Color.BLACK);
         }
