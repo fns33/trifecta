@@ -7,6 +7,7 @@ package game;
 
 import board.Position;
 import pieces.Piece;
+import java.io.Serializable; // <-- Add implements Serializable
 
 /**
 * This class records a single move during a chess game.
@@ -19,7 +20,8 @@ import pieces.Piece;
 * 
 */
 
-public class MoveRecord {
+public class MoveRecord implements Serializable { // <-- Add implements Serializable
+    private static final long serialVersionUID = 1L; // <-- Add serialVersionUID
 
     private Piece movedPiece;
     private Position startPosition;
