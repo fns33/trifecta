@@ -49,7 +49,10 @@ public class SquareView extends JButton {
         setBackground(defaultBackground);
         setFocusPainted(false);
         setBorderPainted(false);
-        setFont(new Font("Serif", Font.BOLD, 22));
+
+        // made the font smaller and serif to better fit the chess symbols
+        // AUTHOR: lcx2
+        setFont(new Font("Serif", Font.PLAIN, 18));
         setOpaque(true);
     }
 

@@ -6,6 +6,7 @@ import java.awt.*;
 import game.GameState;
 import game.GameStorage;
 import java.io.File;
+import game.MoveRecord;
 
 /**
  * Main application window for the Phase 2 Java Swing Chess Application.
@@ -60,6 +61,49 @@ public class ChessFrame extends JFrame {
         boardPanel.setBoard(gameState.getBoard());
 
         add(boardPanel, BorderLayout.CENTER);
+
+        JPanel boardContainer = new JPanel(new BorderLayout());
+
+        // Rank labels on the left side.
+        JPanel rankLabels = new JPanel(new GridLayout(8, 1));
+
+        for (int rank = 1; rank <= 8; rank++) {
+            JLabel label = new JLabel(
+                String.valueOf(rank),
+                SwingConstants.CENTER
+            );
+
+            label.setPreferredSize(new Dimension(24, 0));
+            rankLabels.add(label);
+        }
+
+        // File labels below the chessboard.
+        JPanel fileLabels = new JPanel(new GridLayout(1, 8));
+
+        for (char file = 'A'; file <= 'H'; file++) {
+            JLabel label = new JLabel(
+                String.valueOf(file),
+                SwingConstants.CENTER
+            );
+
+            fileLabels.add(label);
+        }
+
+        // Preserve the existing BoardPanel and its mouse listeners.
+        boardContainer.add(rankLabels, BorderLayout.WEST);
+
+        JPanel bottomLabels = new JPanel(new BorderLayout());
+        bottomLabels.add(
+            Box.createHorizontalStrut(24),
+            BorderLayout.WEST
+        );
+        bottomLabels.add(fileLabels, BorderLayout.CENTER);
+
+        boardContainer.add(bottomLabels, BorderLayout.SOUTH);
+        boardContainer.add(boardPanel, BorderLayout.CENTER);
+
+        add(boardContainer, BorderLayout.CENTER);
+
 
         // Window dimensions and positioning
         setSize(700, 720);
@@ -141,18 +185,34 @@ public class ChessFrame extends JFrame {
         });
     }
 
+    
     /**
-     * Refreshes the GUI using the current GameState.
-     */
+    * Refreshes the board and move history using the current GameState.
+    */
     public void refreshGameDisplay() {
 
+        // Clear selections after moves, Undo, New Game, or Load Game.
+        boardPanel.getMouseController().resetSelection();
+
+        // Refresh the board.
         boardPanel.setBoard(gameState.getBoard());
 
+        // Rebuild the move history from the current game state.
+        historyPanel.clearHistory();
+
+        for (MoveRecord move : gameState.getMoveHistory()) {
+            historyPanel.addMove(move);
+        }
+
+        historyPanel.updateCapturedPieces(gameState.getCapturedPieces());
+
+        // Notify the players if a King has been captured.
         if (gameState.isGameOver() && !winnerDialogShown) {
             winnerDialogShown = true;
             showWinnerDialog(gameState.getWinner());
         }
     }
+
 
     /**
      * Returns the active GameState.
@@ -178,7 +238,10 @@ public class ChessFrame extends JFrame {
             "Winner Declared",
             JOptionPane.INFORMATION_MESSAGE
         );
-
+        
+        // REQUIREMENT: Termination of the application after a King is captured.
+        System.exit(0);
+        
     }
 
     /**
