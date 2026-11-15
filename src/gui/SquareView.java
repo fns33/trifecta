@@ -88,11 +88,9 @@ public class SquareView extends JButton {
 
         // Set text color based on piece color
         if (symbol.startsWith("w")) {
-            setForeground(new Color(20, 20, 90)); // Navy blue
+            setForeground(new Color(240, 240, 240));
         } else if (symbol.startsWith("b")) {
-            setForeground(new Color(130, 0, 0)); // Dark red
-        } else {
-            setForeground(Color.BLACK);
+            setForeground(new Color(0, 0, 0));
         }
     }
 

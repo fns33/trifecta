@@ -8,10 +8,14 @@ import pieces.Bishop;
 import pieces.Queen;
 import pieces.King;
 import utils.BoardPrinter;
+import java.io.Serializable;
 
 // This class represents the 8x8 chessboard matrix and handles board setup and CLI display rendering.
 
-public class Board { 
+public class Board implements Serializable { 
+
+    private static final long serialVersionUID = 1L;
+
     private Piece[][] grid; // 8x8 matrix to store piece objects
 
 // Constructor creates an 8x8 grid and populates all 32 starting chess pieces 

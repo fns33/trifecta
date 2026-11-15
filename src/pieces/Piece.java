@@ -3,13 +3,17 @@ package pieces;
 import board.Position;
 import board.Board;
 import java.util.List;
+import java.io.Serializable;
 
 // this class will be used to represent a piece on the board. it will have a color 
 // and a position. it will also have a method to move the piece to a new position.
 // this class will be abstract because we will have different types of pieces that will
 // extend this class; basically being the blueprint for the other pieces
 
-public abstract class Piece {
+public abstract class Piece implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     private Color color;
     private Position currentPosition;
 
