@@ -19,6 +19,7 @@ public class BoardPanel extends JPanel {
 
     private final ChessFrame parentFrame;
     private final SquareView[][] squares = new SquareView[8][8];
+    private final ChessMouseController mouseController;
     private Board board;
 
     /**
@@ -30,6 +31,7 @@ public class BoardPanel extends JPanel {
 
         this.parentFrame = parentFrame;
         this.board = new Board();
+        this.mouseController = new ChessMouseController(this);
 
         // Initialize starting 8x8 piece layout
         setLayout(new GridLayout(8, 8));
@@ -53,6 +55,15 @@ public class BoardPanel extends JPanel {
                 SquareView square = new SquareView(row, col);
 
                 squares[row][col] = square;
+
+                // Mouse listener Integration @Austhor: lcx2
+                final int r = row;
+                final int c = col;
+
+                square.addActionListener(
+                    e -> mouseController.handleSquareClick(r, c)
+                );
+
                 add(square);
             }
         }
@@ -77,6 +88,10 @@ public class BoardPanel extends JPanel {
                 squares[row][col].setSelected(false);
             }
         }
+    }
+
+    public ChessMouseController getMouseController() {
+        return mouseController;
     }
 
     /**
