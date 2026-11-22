@@ -77,8 +77,19 @@ public class GameState implements Serializable {
             return false;
         }
 
+        //phase 3: implementation: Check if the move would leave the King in check
+        if (ChessRules.wouldLeaveKingInCheck(board, from, to, currentTurn)){
+            return false;
+        }
+
         // Get the destination piece
         Piece targetPiece = board.getPiece(to);
+
+        // phase 3: implementation: Prevent captuing of King pieces
+        // making victory be determined via checkmate
+        if (targetPiece instanceof King) {
+            return false;
+        }
 
         // Prevent capturing your own pieces
         if (targetPiece != null &&
