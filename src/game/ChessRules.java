@@ -148,5 +148,84 @@ public static boolean wouldLeaveKingInCheck(
     }
 }
 
+/**
+ * Determines whether the specified player is checkmated.
+ *
+ * A player is checkmated when their King is in check
+ * and no legal move can eliminate that check.
+ *
+ * @param board Current chessboard
+ * @param defenderColor Color of the player being evaluated
+ * @return true if the player is checkmated
+ */
+public static boolean isCheckmate(
+        Board board,
+        Color defenderColor) {
+
+    if (board == null || defenderColor == null) {
+        return false;
+    }
+
+    // A King must exist before checkmate can be evaluated.
+    boolean kingFound = false;
+
+    for (int row = 0; row < 8; row++) {
+        for (int col = 0; col < 8; col++) {
+            Piece piece = board.getPiece(new Position(row, col));
+
+            if (piece instanceof King
+                    && piece.getColor() == defenderColor) {
+                kingFound = true;
+                break;
+            }
+        }
+
+        if (kingFound) {
+            break;
+        }
+    }
+
+    if (!kingFound || !isInCheck(board, defenderColor)) {
+        return false;
+    }
+
+    // Examine every piece belonging to the defending player.
+    for (int row = 0; row < 8; row++) {
+        for (int col = 0; col < 8; col++) {
+
+            Position from = new Position(row, col);
+            Piece piece = board.getPiece(from);
+
+            if (piece == null
+                    || piece.getColor() != defenderColor) {
+                continue;
+            }
+
+            // Examine each destination allowed by the piece's
+            // normal movement pattern.
+            for (Position to : piece.possibleMoves(board)) {
+
+                Piece targetPiece = board.getPiece(to);
+
+                // Phase 3 does not permit capturing Kings.
+                if (targetPiece instanceof King) {
+                    continue;
+                }
+
+                // A legal escape must leave our King safe.
+                if (!wouldLeaveKingInCheck(
+                        board, from, to, defenderColor)) {
+
+                    // At least one legal escape exists.
+                    return false;
+                }
+            }
+        }
+    }
+
+    // The King is in check and no legal escape exists.
+    return true;
+}
+
 
 }

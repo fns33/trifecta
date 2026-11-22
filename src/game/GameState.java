@@ -16,7 +16,7 @@ import java.util.List;
  *
  * Integrates with MoveRecord.
  *
- * @author fns33 
+ * @author fns33
  */
 public class GameState implements Serializable {
 
@@ -112,28 +112,19 @@ public class GameState implements Serializable {
         moveHistory.add(record);
 
         // Handle captures
-        if (targetPiece != null) {
+        if (targetPiece != null) { capturedPieces.add(targetPiece); }
 
-            capturedPieces.add(targetPiece);
-
-            // Check whether a King was captured
-            if (targetPiece instanceof King) {
-                gameOver = true;
-                winner = (currentTurn == Color.WHITE)
-                    ? "White"
-                    : "Black";
-            }
-        }
-
-        // Update board using Board.java's parameter order:
-        // setPiece(Piece piece, Position position)
         board.setPiece(movingPiece, to);
         board.setPiece(null, from);
 
-        // Switch turns unless the game has ended
-        if (!gameOver) {
-            switchTurn();
+        Color opponentColor = (currentTurn == Color.WHITE) ? Color.BLACK : Color.WHITE;
+        if (ChessRules.isCheckmate(board, opponentColor)){
+            gameOver = true;
+            winner = (currentTurn == Color.WHITE) ? "White" : "Black";
         }
+
+        // Switch turns
+        if (!gameOver) {  switchTurn();  }
 
         return true;
     }
@@ -148,6 +139,9 @@ public class GameState implements Serializable {
         if (moveHistory.isEmpty()) {
             return null;
         }
+
+        //Phase 3: Implementation: Store the current game-over state before undoing
+        boolean wasGameOver = gameOver;
 
         MoveRecord lastMove =
             moveHistory.remove(moveHistory.size() - 1);
@@ -170,20 +164,13 @@ public class GameState implements Serializable {
         }
 
         // Restore game-over state
-        if (gameOver) {
-            gameOver = false;
-            winner = null;
-        }
+        gameOver = false;
+        winner = null;
 
-        // Restore the previous player's turn
-        // If undoing a King capture, the current turn never switched.
-        if (lastMove.getCapturedPiece() instanceof King) {
-         // Keep the current turn unchanged.
-        } else {
-        switchTurn();
-        }
-        
+        if (!wasGameOver) { switchTurn(); }
+
         return lastMove;
+
     }
 
     /**

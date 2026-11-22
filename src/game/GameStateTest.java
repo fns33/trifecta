@@ -1,6 +1,7 @@
 
 package game;
 
+import board.Board;
 import board.Position;
 import pieces.Color;
 import pieces.Piece;
@@ -124,60 +125,100 @@ public class GameStateTest {
             "White pawn returned to original square");
 
             
-        // TEST 7: King capture and winner detection
-        System.out.println("\nTEST 7: King capture");
+
+        // TEST 7: Reject King captures
+        System.out.println("\nTEST 7: King capture prevention");
 
         game.resetGame();
 
-        // Move White's e-pawn forward
-        game.executeMove(
-            new Position(6, 4),
-            new Position(4, 4));
+        // Set up a position where a White rook can attack
+        // the Black King.
+        Board board = game.getBoard();
 
-        // Move Black's e-pawn forward
-        game.executeMove(
-            new Position(1, 4),
-            new Position(3, 4));
+        // Clear all squares.
+        for (int row = 0; row < 8; row++) {
+            for (int col = 0; col < 8; col++) {
+                board.setPiece(null, new Position(row, col));
+            }
+        }
 
-        // Move White's e-pawn again
-        game.executeMove(
-            new Position(4, 4),
-            new Position(3, 4));
+        board.setPiece(
+            new pieces.King(Color.WHITE, new Position(7, 0)),
+            new Position(7, 0)
+        );
 
-        // Move Black's King into a capturable square
-        game.executeMove(
-            new Position(0, 4),
-            new Position(4, 4));
+        board.setPiece(
+            new pieces.King(Color.BLACK, new Position(0, 4)),
+            new Position(0, 4)
+        );
 
-        // White captures Black's King
-        check(game.executeMove(
-            new Position(3, 4),
-            new Position(4, 4)),
-            "White captures Black King");
-
-        check(game.isGameOver(),
-            "Game-over state activated");
-
-        check("White".equals(game.getWinner()),
-            "White declared winner");
-
-        check(game.getCapturedPieces().get(
-            game.getCapturedPieces().size() - 1)
-            instanceof pieces.King,
-            "Captured piece is a King");
-
-        // TEST 8: Prevent moves after game over
-        System.out.println("\nTEST 8: Game-over protection");
+        board.setPiece(
+            new pieces.Rook(Color.WHITE, new Position(1, 4)),
+            new Position(1, 4)
+        );
 
         check(!game.executeMove(
-            new Position(7, 1),
-            new Position(5, 2)),
-            "Moves prevented after King capture");
+            new Position(1, 4),
+            new Position(0, 4)),
+            "King capture rejected");
 
-        // TEST 9: Undo King capture
-        System.out.println("\nTEST 9: Undo King capture");
+        check(game.getBoard().getPiece(
+            new Position(0, 4)) instanceof pieces.King,
+            "Black King remains on board");
 
-        game.undoLastMove();
+        check(game.getMoveHistory().isEmpty(),
+            "Rejected capture not recorded");
+
+        check(game.getCurrentTurn() == Color.WHITE,
+            "Turn unchanged after rejected capture");
+
+
+        // TEST 8: Checkmate and game-over protection
+        System.out.println("\nTEST 8: Checkmate detection");
+
+        game.resetGame();
+
+        // Fool's Mate: 1. f3 e5 2. g4 Qh4#
+        boolean move1 = game.executeMove(
+            new Position(6, 5), new Position(5, 5));
+
+        boolean move2 = game.executeMove(
+            new Position(1, 4), new Position(3, 4));
+
+        boolean move3 = game.executeMove(
+            new Position(6, 6), new Position(4, 6));
+
+        boolean move4 = game.executeMove(
+            new Position(0, 3), new Position(4, 7));
+
+        check(move1 && move2 && move3 && move4,
+            "Fool's Mate moves accepted");
+
+        check(game.isGameOver(),
+            "Checkmate ends the game");
+
+        check("Black".equals(game.getWinner()),
+            "Black declared winner");
+
+        check(game.getMoveHistory().size() == 4,
+            "Four moves recorded");
+
+        check(!game.executeMove(
+            new Position(1, 0),
+            new Position(2, 0)),
+            "Further moves rejected after checkmate");
+
+        check(game.getMoveHistory().size() == 4,
+            "Rejected move not recorded");
+
+
+        // TEST 9: Undo checkmate
+        System.out.println("\nTEST 9: Undo checkmate");
+
+        MoveRecord undoneMove = game.undoLastMove();
+
+        check(undoneMove != null,
+            "Checkmating move undone");
 
         check(!game.isGameOver(),
             "Game-over state cleared");
@@ -185,12 +226,19 @@ public class GameStateTest {
         check(game.getWinner() == null,
             "Winner cleared");
 
-        check(game.getBoard().getPiece(
-            new Position(4, 4)) instanceof pieces.King,
-            "Black King restored");
+        check(game.getCurrentTurn() == Color.BLACK,
+            "Black's turn restored");
 
-        check(game.getCurrentTurn() == Color.WHITE,
-            "White's turn restored");
+        check(game.getMoveHistory().size() == 3,
+            "Move history restored");
+
+        check(game.getBoard().getPiece(
+            new Position(0, 3)) instanceof pieces.Queen,
+            "Black Queen restored to D8");
+
+        check(game.getBoard().getPiece(
+            new Position(4, 7)) == null,
+            "H4 is empty after Undo");
 
 
     }

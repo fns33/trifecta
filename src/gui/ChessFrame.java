@@ -206,7 +206,7 @@ public class ChessFrame extends JFrame {
 
         historyPanel.updateCapturedPieces(gameState.getCapturedPieces());
 
-        // Notify the players if a King has been captured.
+        // Notify the players if/when a checkmate occurs
         if (gameState.isGameOver() && !winnerDialogShown) {
             winnerDialogShown = true;
             showWinnerDialog(gameState.getWinner());
@@ -233,8 +233,8 @@ public class ChessFrame extends JFrame {
 
         JOptionPane.showMessageDialog(
             this,
-            "👑 Game Over! " + winningColor
-                + " player captures the King and wins!",
+            "👑 Checkmate!! " + winningColor
+                + " wins the game!",
             "Winner Declared",
             JOptionPane.INFORMATION_MESSAGE
         );
