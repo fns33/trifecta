@@ -72,6 +72,11 @@ public class GameState implements Serializable {
             return false;
         }
 
+        //phase 3: implementation: Restrict to only valid moves for the piece
+        if (!movingPiece.possibleMoves(board).contains(to)){
+            return false;
+        }
+
         // Get the destination piece
         Piece targetPiece = board.getPiece(to);
 
